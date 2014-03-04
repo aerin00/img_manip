@@ -7,6 +7,7 @@
      <div id="container">  
         <div id="header">
             Mista Headzo
+            <?php print_r($pictures) ?>
 
 
 
@@ -15,7 +16,7 @@
         <?php if(isset($pictures) && count($pictures)):
             foreach ($pictures as $picture): ?>
             <div class="thumb">
-                <a href="site?image=<?php echo $picture['url']; ?>">
+                <a href="site?image=<?php echo $picture['id']; ?>">
                     <img src="<?php echo $picture['thumb_url']; ?>" />
                 </a>
             </div>

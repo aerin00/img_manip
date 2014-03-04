@@ -3,7 +3,20 @@
 class Image_model extends CI_Model {
     public function file_get() {
         //get pictures
-        $files = scandir(FCPATH.'assets/images');
+        $query = $this->db->query('SELECT * FROM images;');
+
+        foreach ($query->result() as $row) {
+           $db_result[] = array(
+            'id' => $row->id,
+            'image_url' => $row->image_url,
+            'thumb_url' => $row->thumb_url
+            );
+        }
+        return $db_result;
+    }
+        
+        
+        /*$files = scandir(FCPATH.'assets/images');
         $files = array_diff($files, array('.','..', 'thumbs'));
         
         $pictures = array();
@@ -13,8 +26,7 @@ class Image_model extends CI_Model {
                 'url' => base_url().'assets/images/' . $file,
                 'thumb_url' => base_url().'assets/images/thumbs/' . $file);
             }
-        return $pictures;
-    }
+        //return $pictures; */
     
     //download picture into folder and upload filepath into database
     public function file_put($url) {
@@ -37,7 +49,7 @@ class Image_model extends CI_Model {
 
         // insert the path and image file into database
         $url = base_url().'assets/images/' . $filename;
-        $thumb_url = base_url().'assets/images/thumbs' . $filename;
+        $thumb_url = base_url().'assets/images/thumbs/' . $filename;
 
         $data = array (
             'image_url' => $url,
