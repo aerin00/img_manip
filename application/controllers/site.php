@@ -16,10 +16,14 @@ class Site extends CI_Controller {
     }
 
     public function thumb() {
-    	if (isset($_GET['url'])) {
-            //do this
+        $this->load->model('image_model');
+        
+    	if (isset($_GET['image'])) {
+            $id = $_GET['image'];
+            $image_url = $this->image_model->file_get_thumb($id);
         }
-    	
+
+    	$data['image_url'] = $image_url;
     	$this->load->view('thumb_view', $data);
     }
 }

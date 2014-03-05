@@ -59,6 +59,7 @@ class Image_model extends CI_Model {
         $this->db->insert('images' , $data);
         }
 
+    //get the ID for the pictures so we can identify it
     public function file_get_db() {
         $query = $this->db->query('SELECT * FROM images;');
 
@@ -67,6 +68,17 @@ class Image_model extends CI_Model {
         }
         return $id;
     }
+
+    public function file_get_thumb($id) {
+        $query = $this->db->get_where('images', array('id' => $id));
+        
+        foreach ($query->result() as $row) {
+           $image_url[] = $row->image_url;
+        }
+        return $image_url;
+    }
+
+
 }
 
 ?>

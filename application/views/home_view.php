@@ -16,7 +16,7 @@
         <?php if(isset($pictures) && count($pictures)):
             foreach ($pictures as $picture): ?>
             <div class="thumb">
-                <a href="site?image=<?php echo $picture['id']; ?>">
+                <a href="site/thumb/?image=<?php echo $picture['id']; ?>">
                     <img src="<?php echo $picture['thumb_url']; ?>" />
                 </a>
             </div>
